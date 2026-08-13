@@ -1,0 +1,14 @@
+{
+  "name": "biblioteca-api",
+  "version": "1.0.0",
+  "description": "API de acervo de biblioteca usada nas aulas de desenvolvimento com agentes de IA",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node src/servidor.js",
+    "test": "node --test \"verificacoes/**/*.spec.js\""
+  },
+  "license": "MIT"
+}
