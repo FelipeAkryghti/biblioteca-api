@@ -1,5 +1,6 @@
 import * as repositorio from '../repositorios/editoras-repositorio.js';
-import { dadosInvalidos } from '../comum/erros.js';
+import * as livrosServico from './livros-servico.js';
+import { conflito, dadosInvalidos, naoEncontrado } from '../comum/erros.js';
 
 const CAMPOS_OBRIGATORIOS = ['nome', 'cidade'];
 
@@ -12,11 +13,31 @@ function validar(dados) {
   }
 }
 
+function exigirExistente(id) {
+  const editora = repositorio.buscarPorId(id);
+  if (!editora) {
+    throw naoEncontrado(`Não existe editora com o identificador "${id}".`);
+  }
+  return editora;
+}
+
 export function listar() {
   return repositorio.listar();
+}
+
+export function buscarPorId(id) {
+  return exigirExistente(id);
 }
 
 export function criar(dados) {
   validar(dados);
   return repositorio.inserir(dados);
+}
+
+export function remover(id) {
+  exigirExistente(id);
+  if (livrosServico.listar({ editoraId: id }).length > 0) {
+    throw conflito(`A editora "${id}" ainda tem livros vinculados.`);
+  }
+  repositorio.remover(id);
 }

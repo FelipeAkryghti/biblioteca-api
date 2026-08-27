@@ -16,6 +16,8 @@ export function inserir(dados) {
     titulo: dados.titulo,
     autor: dados.autor,
     ano: dados.ano,
+    isbn: dados.isbn,
+    editoraId: dados.editoraId ?? null,
     emprestado: false,
     criadoEm: new Date().toISOString(),
   };

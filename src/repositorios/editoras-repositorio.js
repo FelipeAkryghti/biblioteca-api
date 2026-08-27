@@ -6,6 +6,10 @@ export function listar() {
   return [...editoras.values()];
 }
 
+export function buscarPorId(id) {
+  return editoras.get(id) ?? null;
+}
+
 export function inserir(dados) {
   const editora = {
     id: novoIdentificador('edi'),
@@ -15,6 +19,10 @@ export function inserir(dados) {
   };
   editoras.set(editora.id, editora);
   return editora;
+}
+
+export function remover(id) {
+  return editoras.delete(id);
 }
 
 /** Usado apenas pelas verificações, para isolar um caso do outro. */
