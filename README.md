@@ -31,8 +31,10 @@ npm test
 | POST | `/livros` | cadastra um livro |
 | PUT | `/livros/:id` | substitui os dados de um livro |
 | DELETE | `/livros/:id` | remove um livro |
+| GET | `/editoras` | lista as editoras |
+| POST | `/editoras` | cadastra uma editora |
 
-## Exemplo
+## Exemplos
 
 ```bash
 curl -X POST http://localhost:3000/livros \
@@ -41,6 +43,14 @@ curl -X POST http://localhost:3000/livros \
 
 curl http://localhost:3000/livros
 curl "http://localhost:3000/livros?autor=machado"
+```
+
+```bash
+curl -X POST http://localhost:3000/editoras \
+  -H "Content-Type: application/json" \
+  -d '{"nome": "Companhia das Letras", "cidade": "São Paulo"}'
+
+curl http://localhost:3000/editoras
 ```
 
 ## Observação
